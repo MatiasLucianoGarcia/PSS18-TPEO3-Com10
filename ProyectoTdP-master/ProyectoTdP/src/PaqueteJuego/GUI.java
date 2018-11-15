@@ -1,6 +1,8 @@
 package PaqueteJuego;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import javax.swing.*;
 import BuscadoresDeArchivos.ImageFinder;
@@ -11,6 +13,7 @@ import PaqueteContadores.ContadorTiempo;
 import TDAListaDE.*;
 import PaqueteEnemigos.*;
 import PaqueteInicioYFin.Inicializador;
+import PaqueteInicioYFin.Reinicio;
 import PaqueteObjetosGenericos.Objeto;
 import PaquetePersonajes.Personaje;
 
@@ -32,6 +35,8 @@ public class GUI {
 	private KeyAdapter botonera;
 	private SoundPlayer soundplayer;
 	private ImageFinder buscadorDeImagenes;
+	private JMenuBar menuBar;
+	private JMenuItem salirMenu, reiniciarMenu;
 	
 	
 	public static void main(String[] args) {
@@ -84,8 +89,58 @@ public class GUI {
 		
 		nombrePersonaje.setText(nombre);
 		new Nivel(nivelActual, this, 100);
+		
+		armarMenu();		
 	}
 		
+	private void armarMenu()
+	{
+		menuBar = new JMenuBar();
+		menuBar.setVisible(true);
+		
+		reiniciarMenu = new JMenuItem();
+		reiniciarMenu.setHorizontalAlignment(SwingConstants.CENTER);
+		reiniciarMenu.setFont(new Font("Segoe UI", Font.PLAIN, 19));
+		reiniciarMenu.setText("Reiniciar Partida");
+		
+		salirMenu = new JMenuItem();
+		salirMenu.setHorizontalAlignment(SwingConstants.CENTER);
+		salirMenu.setFont(new Font("Segoe UI", Font.PLAIN, 19));
+		salirMenu.setText("Salir");
+		
+		menuBar.add(salirMenu);
+		menuBar.add(reiniciarMenu);
+		
+		frame.setJMenuBar(menuBar);
+		
+		salirMenu.addActionListener (new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	System.exit(0);
+            }   
+        });	
+		
+		reiniciarMenu.addActionListener (new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	try
+            	{  
+            		pararSoundPlayer();
+        			getPanel().removeAll(); 
+        			reiniciar();
+            		frame.dispose();
+            		getTDisparo().stop();
+        			getTiempo().stop();
+        			
+        			GUI gui = new GUI();
+            		gui.getFrame().setVisible(true);
+            	}
+            	catch(Exception ex)
+            	{
+            		ex.printStackTrace();
+            	}
+            }
+        });	
+	}
+	
 	public JLabel grafico(Objeto o) { return o.getGrafico(); }
 	
 	void setTiempo(ContadorTiempo t) { tiempo = t; }

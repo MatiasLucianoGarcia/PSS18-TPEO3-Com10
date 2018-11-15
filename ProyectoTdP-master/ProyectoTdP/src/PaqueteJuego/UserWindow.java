@@ -1,6 +1,7 @@
 package PaqueteJuego;
 
 import java.awt.EventQueue;
+import Agregados.*;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -42,10 +43,14 @@ public class UserWindow {
 		userPanel.setLayout(null);
 		
 		JButton playButton = new JButton("Jugar");
-		playButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		
+		playButton.setFont(new Font("Tahoma", Font.PLAIN, 18));		
 		playButton.setBounds(92, 92, 185, 61);
 		userPanel.add(playButton);	
+		
+		JButton commentButton = new JButton("Dejar Comentario");
+		commentButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		commentButton.setBounds(92, 178, 185, 61);
+		userPanel.add(commentButton);
 		
 		JLabel lblUser = new JLabel("Usuario");
 		lblUser.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -69,7 +74,17 @@ public class UserWindow {
 					e.printStackTrace();
 				}				
 			}
-		});		
+		});	
+		
+		commentButton.addActionListener(new ActionListener() 
+		{
+		    public void actionPerformed(ActionEvent arg0) 
+		    {
+		        ComentarioWindow comentarioWindow = new ComentarioWindow("Usuario");
+		        comentarioWindow.setVisible(true);
+		        frame.dispose();
+		    }
+		});
 	}
 	
 	public JFrame getFrame()

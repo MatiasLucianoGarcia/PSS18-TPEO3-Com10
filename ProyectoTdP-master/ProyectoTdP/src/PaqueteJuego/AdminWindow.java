@@ -4,6 +4,10 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
+import Agregados.ComentarioWindow;
+import Agregados.ListaComentariosAdmin;
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -44,9 +48,13 @@ public class AdminWindow {
 		
 		JButton playButton = new JButton("Jugar");
 		playButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		
 		playButton.setBounds(92, 92, 185, 61);
-		adminPanel.add(playButton);		
+		adminPanel.add(playButton);	
+		
+		JButton commentButton = new JButton("Ver Comentarios");
+		commentButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		commentButton.setBounds(92, 178, 185, 61);
+		adminPanel.add(commentButton);		
 		
 		JLabel lblAdmin = new JLabel("Administrador");
 		lblAdmin.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -71,6 +79,16 @@ public class AdminWindow {
 				}				
 			}
 		});		
+	
+		commentButton.addActionListener(new ActionListener() 
+		{
+		    public void actionPerformed(ActionEvent arg0) 
+		    {
+		        ListaComentariosAdmin  adm = new ListaComentariosAdmin();
+		        adm.setVisible(true);
+		        frame.dispose();
+		    }
+		});
 	}
 	
 	public JFrame getFrame()

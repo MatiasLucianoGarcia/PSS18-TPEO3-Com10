@@ -22,6 +22,7 @@ public class AdminWindow {
 	private static final int frameWidth = 400;
 	private static final int frameHeight = 400;
 	private JPanel adminPanel;
+	
 
 
 	/**
@@ -54,7 +55,13 @@ public class AdminWindow {
 		JButton commentButton = new JButton("Ver Comentarios");
 		commentButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		commentButton.setBounds(92, 178, 185, 61);
-		adminPanel.add(commentButton);		
+		adminPanel.add(commentButton);
+		
+		JButton closeButton = new JButton("Cerrar Sesion");
+		closeButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		closeButton.setBounds(92, 264, 185, 35);
+		adminPanel.add(closeButton);		
+
 		
 		JLabel lblAdmin = new JLabel("Administrador");
 		lblAdmin.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -89,6 +96,25 @@ public class AdminWindow {
 		        frame.dispose();
 		    }
 		});
+		
+		
+		closeButton.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent arg0) 
+			{
+				try
+				{
+					LoginWindow lw = new LoginWindow();
+					lw.getFrame().setVisible(true);
+					frame.dispose();
+				}
+				catch(Exception e)
+				{
+					e.printStackTrace();
+				}				
+			}
+		});		
+		
 	}
 	
 	public JFrame getFrame()

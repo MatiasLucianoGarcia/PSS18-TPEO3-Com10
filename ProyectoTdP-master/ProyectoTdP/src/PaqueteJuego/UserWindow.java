@@ -52,6 +52,12 @@ public class UserWindow {
 		commentButton.setBounds(92, 178, 185, 61);
 		userPanel.add(commentButton);
 		
+		
+		JButton closeButton = new JButton("Cerrar Sesion");
+		closeButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		closeButton.setBounds(92, 264, 185, 35);
+		userPanel.add(closeButton);
+		
 		JLabel lblUser = new JLabel("Usuario");
 		lblUser.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblUser.setBounds(155, 35, 66, 27);
@@ -85,6 +91,24 @@ public class UserWindow {
 		        frame.dispose();
 		    }
 		});
+		
+		closeButton.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent arg0) 
+			{
+				try
+				{
+					LoginWindow lw = new LoginWindow();
+					lw.getFrame().setVisible(true);
+					frame.dispose();
+				}
+				catch(Exception e)
+				{
+					e.printStackTrace();
+				}				
+			}
+		});		
+		
 	}
 	
 	public JFrame getFrame()

@@ -38,8 +38,11 @@ public class GUI {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					GUI window = new GUI();
-					window.frame.setVisible(true);
+					//GUI window = new GUI();
+					//window.frame.setVisible(true);
+					LoginWindow loginWindow = new LoginWindow();
+					loginWindow.getFrame().setVisible(true);
+					
 				}
 				catch (Exception e) {
 					e.printStackTrace();
